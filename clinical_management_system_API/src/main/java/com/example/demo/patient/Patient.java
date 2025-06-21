@@ -1,3 +1,5 @@
+
+package com.example.demo.patient;
 public class Patient {
     private String P_name;
     private String P_id;
@@ -85,4 +87,5 @@ public class Patient {
                 ", blood_G='" + blood_G + '\'' +
                 '}';
     }
+
 }
