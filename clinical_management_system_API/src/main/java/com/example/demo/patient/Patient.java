@@ -1,6 +1,22 @@
 
 package com.example.demo.patient;
+
+
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Patient {
+    @Id
+    @SequenceGenerator(
+            name ="patient_sequence",
+            sequenceName = "patient_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "patient_sequence"
+    )
     private String P_name;
     private String P_id;
     private String P_DOB;
