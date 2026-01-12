@@ -7,17 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("api")
 public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/user")
-    public ResponseEntity<String> userName(@RequestBody UserDto userDto) {
-        userService.user(userDto.getName());
-        return ResponseEntity.ok("Add user");
+    //create
+    @PostMapping("/user")
+    public ResponseEntity<UserInfo> createUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.createuser(userDto));
     }
 
+    //read All
+    @GetMapping("/users")
+    public List<UserInfo> getAllUsers(){
+
+        return userService.getALlUsers();
+    }
+
+    //read one
     @GetMapping("/getUser/{user_id}")
     public ResponseEntity<UserInfo> getUser(@PathVariable Long user_id) {
         return userService.getUser(user_id)
@@ -25,22 +36,26 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("deleteUser/{user_Id}")
-    public  ResponseEntity<String> deleteUser(@PathVariable Long user_Id){
-        userService.deleteUser(user_Id);
-        return ResponseEntity.ok("deleted succesfully") ;
+    //delete
+    @DeleteMapping("/deleteUser/{user_id}")
+    public String deleteUser(@PathVariable Long user_id){
+        userService.deleteUser(user_id);
+        return "user with id " + user_id + " deleted succesfull";
     }
 
-    @PutMapping("updateUser/{user_id}")
-    public ResponseEntity<UserInfo> updateUser(@PathVariable Long user_id, @RequestBody UserInfo userInfo)
-    {
-        UserInfo updateUser = userService.updateUser(user_id, userInfo);
-        if (updateUser != null){
-            return ResponseEntity.ok(updateUser);
-        } else {
+    // UPDATE
+    @PutMapping("/user/{user_id}")
+    public ResponseEntity<UserInfo> updateUser(
+            @PathVariable Long user_id,
+            @RequestBody UserDto userDto) {
+
+        UserInfo updated = userService.updateUser(user_id, userDto);
+        if (updated == null)
             return ResponseEntity.notFound().build();
 
-            ///
-        }
+        return ResponseEntity.ok(updated);
     }
+
+
+
 }
