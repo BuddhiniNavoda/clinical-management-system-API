@@ -1,6 +1,7 @@
 package com.example.clinicalSystem.dto;
 
 public class UserDto {
+<<<<<<< HEAD
 
     private String userName;
     private String address;
@@ -68,5 +69,20 @@ public class UserDto {
 
     public void setGender(String gender) {
         this.gender = gender;
+=======
+    private String name ;
+
+    public UserDto(String name) {
+        this.name = name;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
     }
 }

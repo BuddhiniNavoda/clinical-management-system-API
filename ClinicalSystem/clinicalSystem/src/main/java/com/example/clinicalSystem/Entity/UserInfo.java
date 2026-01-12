@@ -12,6 +12,7 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private long userId;
+<<<<<<< HEAD
 
     private String userName ;
     private String address;
@@ -32,6 +33,16 @@ public class UserInfo {
         this.email = email;
         this.dob = dob;
         this.gender = gender;
+=======
+    private String userName ;
+
+    public UserInfo(){
+
+    }
+
+    public UserInfo(String userName) {
+        this.userName = userName;
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
     }
 
     public String getUserName() {
@@ -50,6 +61,7 @@ public class UserInfo {
         this.userId = userId;
     }
 
+<<<<<<< HEAD
     public String getAddress() {
         return address;
     }
@@ -89,5 +101,8 @@ public class UserInfo {
     public void setGender(String gender) {
         this.gender = gender;
     }
+=======
+
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
 
 }

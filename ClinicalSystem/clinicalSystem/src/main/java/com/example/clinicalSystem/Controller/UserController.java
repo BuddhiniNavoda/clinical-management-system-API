@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api")
+=======
+@RestController
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
 public class UserController {
     @Autowired
     UserService userService;
 
+<<<<<<< HEAD
     //create
     @PostMapping("/user")
     public ResponseEntity<UserInfo> createUser(@RequestBody UserDto userDto) {
@@ -29,12 +34,21 @@ public class UserController {
     }
 
     //read one
+=======
+    @RequestMapping("/user")
+    public ResponseEntity<String> userName(@RequestBody UserDto userDto) {
+        userService.user(userDto.getName());
+        return ResponseEntity.ok("Add user");
+    }
+
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
     @GetMapping("/getUser/{user_id}")
     public ResponseEntity<UserInfo> getUser(@PathVariable Long user_id) {
         return userService.getUser(user_id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+<<<<<<< HEAD
 
     //delete
     @DeleteMapping("/deleteUser/{user_id}")
@@ -58,4 +72,6 @@ public class UserController {
 
 
 
+=======
+>>>>>>> c51862acf14b91dd05eb99f55a1ecbb85b7876bc
 }
