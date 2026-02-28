@@ -17,7 +17,10 @@ public class PatientService {
     private PatientRepository patientRepository;
 
     public String signupPatient(PatientSignupDto dto){
-        if(accessRepository.findByEmail(dto.getEmail()) != null){
+
+        String email = dto.getEmail().trim();
+
+        if(accessRepository.existsByEmail(email) ){
             return "Email already exists";
         }
         Access access = new Access ();
@@ -38,4 +41,8 @@ public class PatientService {
 
         return "patient Registered successfully";
     }
+    public Patient getPatientByAccessId(Long access_id){
+        return patientRepository.findByAccessId(access_id);
+    }
+
 }
